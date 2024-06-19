@@ -8,8 +8,8 @@ func main() {
 	fmt.Println(card)
 	fmt.Println(cardDeck)
 	cardDeck = append(cardDeck, "Three of Spades")
-	for i, card := range cardDeck {
-		fmt.Println(i, card)
+	for _, card := range cardDeck {
+		fmt.Println(card)
 	}
 }
 
