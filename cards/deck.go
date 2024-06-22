@@ -48,6 +48,11 @@ func (d deck) saveToFile(fileName string) {
 	}
 }
 
-// func newDeckFromFile(fileName string) deck {
-
-// }
+func newDeckFromFile(fileName string) deck {
+	readFile, err := os.ReadFile(fileName)
+	if err != nil {
+		log.Fatal(err)
+	}
+	d := strings.Split(string(readFile), ",")
+	return d
+}
