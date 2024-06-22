@@ -32,8 +32,7 @@ func newDeckFromFile(fileName string) deck {
 	if err != nil {
 		log.Fatal(err)
 	}
-	d := strings.Split(string(readFile), ",")
-	return d
+	return strings.Split(string(readFile), ",")
 }
 
 func deal(d deck, handSize int) (deck, deck) {
