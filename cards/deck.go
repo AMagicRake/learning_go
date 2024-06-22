@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"math/rand"
 	"os"
 	"strings"
 )
@@ -53,5 +54,12 @@ func (d deck) saveToFile(fileName string) {
 	err := os.WriteFile(fileName, []byte(d.toString()), 0666)
 	if err != nil {
 		log.Fatal(err)
+	}
+}
+
+func (d deck) shuffle() {
+	for i := range d {
+		swapIndex := rand.Intn(len(d) - 1)
+		d[i], d[swapIndex] = d[swapIndex], d[i]
 	}
 }
