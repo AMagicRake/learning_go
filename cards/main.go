@@ -3,8 +3,10 @@ package main
 func main() {
 
 	cardDeck := newDeck()
-	cardDeck.saveToFile("deckState.dck")
+	cardDeck.shuffle()
+	cardDeck.print()
+	// cardDeck.saveToFile("deckState.dck")
 
-	readDeck := newDeckFromFile("deckState.dck")
-	readDeck.print()
+	// readDeck := newDeckFromFile("deckState.dck")
+	// readDeck.print()
 }
