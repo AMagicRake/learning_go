@@ -7,9 +7,13 @@ type person struct {
 	lastName  string
 }
 
+func (p person) toString() string {
+	return p.firstName + " " + p.lastName
+}
+
 func main() {
 
 	niel := person{"Niel", "Gow"}
 
-	fmt.Println(niel.firstName, niel.lastName)
+	fmt.Println(niel.toString())
 }
