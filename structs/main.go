@@ -24,11 +24,17 @@ func (ci contactInfo) toString() string {
 	return ci.Email + " " + ci.MobileNumber
 }
 
+func (p *person) updateName(newFirstName string) {
+	p.FirstName = newFirstName
+}
+
 func main() {
 
 	niel := person{"Niel", "Gow", contactInfo{"niel.gow@domain.com", "+4407123456789"}}
 	meg := person{FirstName: "Megan", LastName: "Smith"}
 	meg.contactInfo = contactInfo{Email: "meg.smith@domain.com", MobileNumber: "+467123456789"}
+
+	meg.updateName("Meg")
 
 	fmt.Println(niel.toString())
 	fmt.Println(meg.toString())
