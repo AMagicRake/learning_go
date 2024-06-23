@@ -35,7 +35,7 @@ func main() {
 	fmt.Printf("%+v\n", niel)
 
 	// data := &person{"John", "Gow"}
-	jsonNiel, err := json.Marshal(niel)
+	jsonNiel, err := json.MarshalIndent(niel, "", "    ")
 	if err != nil {
 		fmt.Println("could not marshall json")
 	} else {
