@@ -6,9 +6,9 @@ import (
 )
 
 type person struct {
-	FirstName string      `json:"firstName"`
-	LastName  string      `json:"lastName"`
-	Comms     contactInfo `json:"contactInfo"`
+	FirstName   string `json:"firstName"`
+	LastName    string `json:"lastName"`
+	contactInfo `json:"contactInfo"`
 }
 
 type contactInfo struct {
@@ -17,7 +17,7 @@ type contactInfo struct {
 }
 
 func (p person) toString() string {
-	return p.FirstName + " " + p.LastName + " " + p.Comms.toString()
+	return p.FirstName + " " + p.LastName + " " + p.contactInfo.toString()
 }
 
 func (ci contactInfo) toString() string {
@@ -28,7 +28,7 @@ func main() {
 
 	niel := person{"Niel", "Gow", contactInfo{"niel.gow@domain.com", "+4407123456789"}}
 	meg := person{FirstName: "Megan", LastName: "Smith"}
-	meg.Comms = contactInfo{Email: "meg.smith@domain.com", MobileNumber: "+467123456789"}
+	meg.contactInfo = contactInfo{Email: "meg.smith@domain.com", MobileNumber: "+467123456789"}
 
 	fmt.Println(niel.toString())
 	fmt.Println(meg.toString())
