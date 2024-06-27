@@ -1,11 +1,18 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net/http"
-	"os"
 )
+
+type logWriter struct{}
+
+func (logWriter) Write(bs []byte) (int, error) {
+	fmt.Println(string(bs))
+	return len(bs), nil
+}
 
 func main() {
 	resp, err := http.Get("https://www.google.co.uk")
@@ -23,5 +30,5 @@ func main() {
 	// }
 	// fmt.Println(string(respBody))
 
-	io.Copy(os.Stdout, resp.Body)
+	io.Copy(logWriter{}, resp.Body)
 }
