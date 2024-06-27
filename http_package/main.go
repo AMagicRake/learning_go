@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -17,9 +17,11 @@ func main() {
 	// if bytes > 0 && err != nil {
 	// 	fmt.Println(string(bs))
 	// }
-	respBody, err := io.ReadAll(resp.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(string(respBody))
+	// respBody, err := io.ReadAll(resp.Body)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// fmt.Println(string(respBody))
+
+	io.Copy(os.Stdout, resp.Body)
 }
