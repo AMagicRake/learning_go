@@ -3,9 +3,11 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func checkStatus(url string, c chan string) {
+	time.Sleep(1 * time.Second)
 	_, err := http.Get(url)
 
 	if err != nil {
@@ -32,8 +34,7 @@ func main() {
 		go checkStatus(link, output)
 	}
 
-	//infinite loop bad
-	for {
-		go checkStatus(<-output, output)
+	for l := range output {
+		go checkStatus(l, output)
 	}
 }
