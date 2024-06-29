@@ -7,7 +7,6 @@ import (
 )
 
 func checkStatus(url string, c chan string) {
-	time.Sleep(1 * time.Second)
 	_, err := http.Get(url)
 
 	if err != nil {
@@ -35,6 +34,9 @@ func main() {
 	}
 
 	for l := range output {
-		go checkStatus(l, output)
+		go func() {
+			time.Sleep(2 * time.Second)
+			checkStatus(l, output)
+		}()
 	}
 }
