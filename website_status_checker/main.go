@@ -9,10 +9,12 @@ func checkStatus(url string, c chan string) {
 	_, err := http.Get(url)
 
 	if err != nil {
-		c <- url + " is not available."
+		fmt.Println(url + " is not available.")
+		c <- url
 		return
 	}
-	c <- url + " is available."
+	fmt.Println(url + " is not available.")
+	c <- url
 }
 
 func main() {
@@ -30,7 +32,8 @@ func main() {
 		go checkStatus(link, output)
 	}
 
-	for i := 0; i < len(links); i++ {
-		fmt.Println(<-output)
+	//infinite loop bad
+	for {
+		go checkStatus(<-output, output)
 	}
 }
