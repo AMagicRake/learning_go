@@ -5,18 +5,19 @@ import (
 	"net/http"
 )
 
-func checkStatus(url string) {
+func checkStatus(url string, c chan string) {
 	_, err := http.Get(url)
 
 	if err != nil {
-		fmt.Println(url, " is not available.")
+		c <- url + " is not available."
 		return
 	}
-	fmt.Println(url, "is available.")
+	c <- url + " is available."
 }
 
 func main() {
 
+	output := make(chan string)
 	links := []string{
 		"http://google.com",
 		"http://facebook.com",
@@ -26,6 +27,10 @@ func main() {
 	}
 
 	for _, link := range links {
-		go checkStatus(link)
+		go checkStatus(link, output)
+	}
+
+	for i := 0; i < len(links); i++ {
+		fmt.Println(<-output)
 	}
 }
